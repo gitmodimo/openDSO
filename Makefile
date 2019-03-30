@@ -55,6 +55,6 @@ buildroot: buildroot/.config
 
 #git clone --depth 1 --recurse-submodules --shallow-submodules -j3 https://github.com/gitmodimo/openDSO.git
 #cd openDSO
-#make all +j8
+#make all
 
 # mmc dev 1 && fatload mmc 1 0x10000000 image.itb && bootm 0x10000000
