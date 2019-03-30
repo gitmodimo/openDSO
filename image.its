@@ -28,9 +28,9 @@
                 algo = "sha1";
             };
         };
-      /*  ramdisk@0 {
+        ramdisk@0 {
             description = "ramdisk";
-            data = /incbin/("./ramdisk.cpio");
+            data = /incbin/(".//buildroot/output/images/rootfs.cpio");
             type = "ramdisk";
             arch = "arm";
             os = "linux";
@@ -38,7 +38,7 @@
             hash@1 {
                 algo = "sha1";
             };
-        };*/
+        };
     };
     configurations {
         default = "conf@1";
@@ -46,7 +46,7 @@
             description = "Boot Linux kernel with FDT blob + ramdisk";
             kernel = "kernel@0";
             fdt = "fdt@0";
-          //  ramdisk = "ramdisk@0";
+            ramdisk = "ramdisk@0";
             hash@1 {
                 algo = "sha1";
             };

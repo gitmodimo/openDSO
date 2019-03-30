@@ -7,6 +7,8 @@ CROSS_COMPILE=arm-linux-gnueabihf-
 ARCH=arm 
 UIMAGE_LOADADDR=0x8000
 
+.PHONY: buildroot
+
 all: linux uboot
 
 linux_defconfig: linux-xlnx/.config
@@ -19,7 +21,7 @@ linux_menuconfig:
 	
 linux: linux-xlnx/.config
 	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make -C ./linux-xlnx/ ARCH=$(ARCH) UIMAGE_LOADADDR=$(UIMAGE_LOADADDR) uImage
-linux_image:
+boot_image:
 	PATH=$(PATHS) mkimage -f image.its image.itb
 	
 u-boot-xlnx/.config:
@@ -33,6 +35,21 @@ uboot: u-boot-xlnx/.config
 dtb:
 	PATH=$(PATHS) ./linux-xlnx/scripts/dtc/dtc -I dts -O dtb -o ./dt.dtb ./linux-xlnx/arch/arm/boot/dts/zynq-microzed.dts
 
+	
+buildroot_source:
+	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make -C ./buildroot/ source
+	
+buildroot/.config:
+	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) BR2_DEFCONFIG=../configs/buildroot_openDSO_defconfig make -C ./buildroot/ defconfig
+	
+buildroot_menuconfig: 
+	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) BR2_DEFCONFIG=../configs/buildroot_openDSO_defconfig make -C ./buildroot/ menuconfig
+	
+	
+buildroot: buildroot/.config
+	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) BR2_DEFCONFIG=../configs/buildroot_openDSO_defconfig make -C ./buildroot/ 
+	
+	
 
 
 # mmc dev 1 && fatload mmc 1 0x10000000 image.itb && bootm 0x10000000

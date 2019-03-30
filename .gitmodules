@@ -4,3 +4,6 @@
 [submodule "u-boot-xlnx"]
 	path = u-boot-xlnx
 	url = ./u-boot-xlnx/
+[submodule "buildroot"]
+	path = buildroot
+	url = ./buildroot/
