@@ -31,7 +31,7 @@ u-boot-xlnx/.config:
 	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make zynq_zed_config -C ./u-boot-xlnx/
 	
 	
-uboot: u-boot-xlnx/.config
+uboot: u-boot-xlnx/cd buildroot
 	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make -C ./u-boot-xlnx/
 	
 dtb:
@@ -53,5 +53,8 @@ buildroot: buildroot/.config
 	
 	
 
-#git clone --recurse-submodules -j3 https://github.com/gitmodimo/openDSO.git --depth 1
+#git clone --depth 1 --recurse-submodules --shallow-submodules -j3 https://github.com/gitmodimo/openDSO.git
+#cd openDSO
+#make all +j8
+
 # mmc dev 1 && fatload mmc 1 0x10000000 image.itb && bootm 0x10000000
