@@ -35,7 +35,7 @@ uboot: u-boot-xlnx/.config
 	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make -C ./u-boot-xlnx/
 	
 dtb:
-	PATH=$(PATHS) ./linux-xlnx/scripts/dtc/dtc -I dts -O dtb -o ./dt.dtb ./linux-xlnx/arch/arm/boot/dts/zynq-microzed.dts
+	PATH=$(PATHS) $(DTC_PATH)/dtc -I dts -O dtb -o ./dt.dtb ./linux-xlnx/arch/arm/boot/dts/zynq-microzed.dts
 
 	
 buildroot_source:
