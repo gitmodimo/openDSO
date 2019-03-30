@@ -9,7 +9,10 @@ UIMAGE_LOADADDR=0x8000
 
 .PHONY: buildroot
 
-all: linux uboot
+all: boot_image
+
+boot_image: buildroot dtb linux uboot
+	PATH=$(PATHS) mkimage -f image.its image.itb
 
 linux_defconfig: linux-xlnx/.config
 
@@ -21,8 +24,7 @@ linux_menuconfig:
 	
 linux: linux-xlnx/.config
 	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make -C ./linux-xlnx/ ARCH=$(ARCH) UIMAGE_LOADADDR=$(UIMAGE_LOADADDR) uImage
-boot_image:
-	PATH=$(PATHS) mkimage -f image.its image.itb
+
 	
 u-boot-xlnx/.config:
 	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make distclean -C ./u-boot-xlnx/
