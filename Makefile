@@ -31,7 +31,7 @@ u-boot-xlnx/.config:
 	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make zynq_zed_config -C ./u-boot-xlnx/
 	
 	
-uboot: u-boot-xlnx/cd buildroot
+uboot: u-boot-xlnx/.config buildroot
 	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make -C ./u-boot-xlnx/
 	
 dtb:
