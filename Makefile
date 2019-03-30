@@ -11,7 +11,7 @@ UIMAGE_LOADADDR=0x8000
 
 all: boot_image
 
-boot_image: buildroot dtb linux uboot
+boot_image: buildroot dt.dtb linux uboot
 	PATH=$(PATHS) mkimage -f image.its image.itb
 
 linux_defconfig: linux-xlnx/.config
@@ -34,8 +34,8 @@ u-boot-xlnx/.config:
 uboot: u-boot-xlnx/.config buildroot
 	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make -C ./u-boot-xlnx/
 	
-dtb:
-	PATH=$(PATHS) $(DTC_PATH)/dtc -I dts -O dtb -o ./dt.dtb ./linux-xlnx/arch/arm/boot/dts/zynq-microzed.dts
+dt.dtb: uboot
+	PATH=$(PATHS) $(DTC_PATH)dtc -I dts -O dtb -o ./dt.dtb ./linux-xlnx/arch/arm/boot/dts/zynq-microzed.dts
 
 	
 buildroot_source:
