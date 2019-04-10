@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP Z_TURN_Lite
+D Z-TURN Lite Connector
+K Z_TURN lite zturn
+F http://suddendocs.samtec.com/catalog_english/bth.pdf
+$ENDCMP
+#
+#End Doc Library

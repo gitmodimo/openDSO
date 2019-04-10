@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name BSH-060-01-X-D-A)(type Legacy)(uri "$(KIPRJMOD)/LIBS/BSH-060-01-X-D-A/BSH-060-01-X-D-A.mod")(options "")(descr ""))
+)

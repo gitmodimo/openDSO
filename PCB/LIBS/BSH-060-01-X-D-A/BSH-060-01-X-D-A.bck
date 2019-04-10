@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP Z_TURN_Lite
+D Z-TURN Lite Connector
+K Z_TURN lite zturn
+F /home/modimo/Projekty/openDSO/Datasheets/ZTURNLITESCHV11.pdf
+$ENDCMP
+#
+#End Doc Library
