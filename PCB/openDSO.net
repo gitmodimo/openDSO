@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /home/modimo/Projekty/openDSO/PCB/openDSO.sch)
-    (date "śro, 10 kwi 2019, 22:27:49")
+    (date "śro, 10 kwi 2019, 22:32:09")
     (tool "Eeschema (2018-01-23 revision 1574558)-master")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -21,7 +21,7 @@
       (datasheet http://suddendocs.samtec.com/catalog_english/bth.pdf)
       (libsource (lib z_turn_lite) (part Z_TURN_Lite))
       (sheetpath (names /) (tstamps /))
-      (tstamp 5CAEC436)))
+      (tstamp 5CAE52B9)))
   (libparts
     (libpart (lib z_turn_lite) (part Z_TURN_Lite)
       (description "Z-TURN Lite Connector")
