@@ -1,4 +1,4 @@
-update=śro, 10 kwi 2019, 22:27:13
+update=czw, 11 kwi 2019, 19:15:25
 version=1
 last_client=kicad
 [pcbnew]
@@ -30,3 +30,4 @@ version=1
 LibDir=
 [eeschema/libraries]
 LibName1=LIBS/z_turn_lite
+LibName2=LIBS/max19506
