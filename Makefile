@@ -26,7 +26,7 @@ linux: linux-xlnx/.config
 	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make -C ./linux-xlnx/ ARCH=$(ARCH) UIMAGE_LOADADDR=$(UIMAGE_LOADADDR) uImage
 
 	
-u-boot-xlnx/.config:
+u-boot-xlnx/.config: configs/uboot_zynq_z_turn_defconfig
 	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make distclean -C ./u-boot-xlnx/
 	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make ../../configs/uboot_zynq_z_turn_defconfig -C ./u-boot-xlnx/
 	
