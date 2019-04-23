@@ -1,0 +1,1 @@
+bootcmd=fatload mmc 0 0x10000000 image.itb && bootm 0x10000000
