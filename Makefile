@@ -28,7 +28,7 @@ linux: linux-xlnx/.config
 	
 u-boot-xlnx/.config:
 	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make distclean -C ./u-boot-xlnx/
-	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make zynq_z_turn_defconfig -C ./u-boot-xlnx/
+	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make ../../configs/uboot_zynq_z_turn_defconfig -C ./u-boot-xlnx/
 	
 	
 uboot: u-boot-xlnx/.config buildroot
