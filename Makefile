@@ -38,8 +38,12 @@ uboot: u-boot-xlnx/.config buildroot
 uboot_menuconfig:
 	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make -C ./u-boot-xlnx/ menuconfig
 	
+uboot_savedefconfig:	
+	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make -C ./u-boot-xlnx/ savedefconfig
+	cp ./u-boot-xlnx/defconfig configs/uboot_zynq_z_turn_defconfig
+	
 dt.dtb: uboot
-	PATH=$(PATHS) $(DTC_PATH)dtc -I dts -O dtb -o ./dt.dtb ./linux-xlnx/arch/arm/boot/dts/zynq-microzed.dts
+	PATH=$(PATHS):$(DTC_PATH) make -C ./DT/
 
 	
 buildroot_source:
@@ -68,4 +72,17 @@ images: fsbl uboot buildroot dt.dtb linux
 #cd openDSO
 #make all
 
+# fatload mmc 0 0x1000000 top_wrapper.bit; fpga loadb 0 0x1000000 2083850
 # mmc dev 0 && fatload mmc 0 0x10000000 image.itb && bootm 0x10000000
+
+bootcmd:
+	tftpboot 0x1000000 top_wrapper.bit; fpga loadb 0 0x1000000 2083850;tftpboot 0x10000000 image.itb && bootm 0x10000000
+
+	fatload mmc 0 0x1000000 top_wrapper.bit; fpga loadb 0 0x1000000 2083850;fatload mmc 0 0x10000000 image.itb && bootm 0x10000000
+	mw 0xF8000008  0xDF0D
+	mw F8000240 1
+	md F8000240 
+	md 41200000 
+
+
+
