@@ -20,7 +20,7 @@
         };
         fdt@0 {
             description = "Flattened Device Tree blob";
-            data = /incbin/("../dt.dtb");
+            data = /incbin/("../DT/dt.dtb");
             type = "flat_dt";
             arch = "arm";
             compression = "none";

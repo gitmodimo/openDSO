@@ -76,6 +76,7 @@ images: fsbl uboot buildroot dt.dtb linux
 # mmc dev 0 && fatload mmc 0 0x10000000 image.itb && bootm 0x10000000
 
 bootcmd:
+	setenv serverip 192.168.137.1;setenv ipaddr 192.168.137.10;
 	tftpboot 0x1000000 top_wrapper.bit; fpga loadb 0 0x1000000 2083850;tftpboot 0x10000000 image.itb && bootm 0x10000000
 
 	fatload mmc 0 0x1000000 top_wrapper.bit; fpga loadb 0 0x1000000 2083850;fatload mmc 0 0x10000000 image.itb && bootm 0x10000000
