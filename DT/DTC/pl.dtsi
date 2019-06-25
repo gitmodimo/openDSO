@@ -66,8 +66,10 @@
 		dsi_host_0: tom-dsi-core@60000000 {
 			compatible = "open,dsi";
 			reg = <0x60000000 0x1000>;
-			tom,dsi-num-lanes = <4>;
-            xlnx,dsi-num-lanes=<4>;
+			tom,dsi-num-lanes = <2>;
+            xlnx,dsi-num-lanes=<2>;
+            
+            xlnx,lp_divider=<2>;
             
             xlnx,dsi-data-type = <MIPI_DSI_FMT_RGB888>;
 			#address-cells = <1>;
@@ -91,12 +93,60 @@
 				reg = <0>;
 			};*/
 
-			simple_panel: simple-panel@0
+			/*simple_panel: simple-panel@0
 			{
 				compatible = "auo,b101uan01";
+				//compatible = "panel-samsung-s6e8aa0";
+                
 				reg = <0>;
-			};
-		};
+			};*/
+            
+            
+            simple_panel: simple-panel@0 {
+                compatible = "lg,lh320ws1";
+                reg = <0>;
+                reset-gpios =  <&axi_gpio_0 1 0 1>;
+                
+                power-on-delay=<1000>;
+                reset-delay=<1000>;
+                init-delay=<1000>;
+                panel-width-mm=<55>;
+                panel-height-mm=<83>;
+                
+                
+                display-timings {
+                    timing0: timing-0 {
+                        clock-frequency = <57153600>;
+                        hactive = <640>;
+                        vactive = <960>;
+                        hfront-porch = <192>;
+                        hback-porch = <192>;
+                        vfront-porch = <10>;
+                        vback-porch = <28>;
+                        
+                        //TODO: sprawdzic do czego to
+                        hsync-len = <5>;
+                        vsync-len = <2>;
+                    };
+                };
+    
+    
+    
+                //power-supply = <&reg_display>;
+                //reset-gpios = <&r_pio 0 5 GPIO_ACTIVE_LOW>; 
+               // backlight = <&pwm_bl>;
+            };
+            
+            
+           /* simple_panel: simple-panel@0 {
+                compatible = "bananapi,lhr050h41", "ilitek,ili9881c";
+                reg = <0>;
+                reset-gpios =  <&axi_gpio_0 1 0 1>;
+                //power-supply = <&reg_display>;
+                //reset-gpios = <&r_pio 0 5 GPIO_ACTIVE_LOW>; 
+               // backlight = <&pwm_bl>;
+            };*/
+        };
 
 		/*drm-pl-disp-drv {
 			compatible = "xlnx,pl-disp";
