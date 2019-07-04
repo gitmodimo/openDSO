@@ -49,7 +49,7 @@ dt.dtb: uboot
 buildroot_source:
 	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make -C ./buildroot/ source
 	
-buildroot/.config:
+buildroot/.config: configs/buildroot_openDSO_defconfig
 	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) BR2_DEFCONFIG=../configs/buildroot_openDSO_defconfig make -C ./buildroot/ defconfig
 	
 buildroot_savedefconfig:	
