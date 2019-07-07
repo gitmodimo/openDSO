@@ -24,6 +24,9 @@ linux_menuconfig:
 	
 linux: linux-xlnx/.config
 	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make -C ./linux-xlnx/ ARCH=$(ARCH) UIMAGE_LOADADDR=$(UIMAGE_LOADADDR) uImage
+	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make -C ./linux-xlnx/ ARCH=$(ARCH) modules
+	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make -C ./linux-xlnx/ ARCH=$(ARCH) INSTALL_MOD_PATH=../buildroot/overlay/ modules_install
+	
 
 	
 u-boot-xlnx/.config: configs/uboot_zynq_z_turn_defconfig
@@ -66,7 +69,7 @@ buildroot: buildroot/.config
 fsbl:
 	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make -C ./FSBL/
 
-images: fsbl uboot buildroot dt.dtb linux 
+images: linux fsbl uboot buildroot dt.dtb  
 	PATH=$(PATHS) CROSS_COMPILE=$(CROSS_COMPILE) make -C ./IMAGE/
 #git clone --depth 1 --recurse-submodules --shallow-submodules -j3 https://github.com/gitmodimo/openDSO.git
 #cd openDSO
